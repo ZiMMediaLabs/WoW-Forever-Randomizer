@@ -17,6 +17,9 @@
   <meta name="apple-mobile-web-app-title" content="WoW Randomizer">
 
   <link rel="stylesheet" href="style.css">
+
+  <!-- Visit counter -->
+  <script data-goatcounter="https://zimmedia-labs.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
 </head>
 <body>
   <div id="backdrop" class="backdrop" aria-hidden="true"></div>
@@ -41,13 +44,13 @@
     <section id="screen-faction" class="screen" data-bg="assets/images/bg_faction.png" hidden>
       <h2 class="txt gold header" data-text="CHOOSE YOUR FACTION">CHOOSE YOUR FACTION</h2>
       <div class="divider" style="top: 54px; width: 300px;"></div>
-      <button class="faction-tile" data-choice="Alliance" style="top: 66px;" aria-label="Alliance">
+      <button class="faction-tile" data-goatcounter-click="wow-roll" data-choice="Alliance" style="top: 66px;" aria-label="Alliance">
         <img src="assets/images/tile_alliance.png" alt="">
       </button>
-      <button class="faction-tile" data-choice="Horde" style="top: 230px;" aria-label="Horde">
+      <button class="faction-tile" data-goatcounter-click="wow-roll" data-choice="Horde" style="top: 230px;" aria-label="Horde">
         <img src="assets/images/tile_horde.png" alt="">
       </button>
-      <button class="faction-tile" data-choice="Either" style="top: 394px;" aria-label="Either faction">
+      <button class="faction-tile" data-goatcounter-click="wow-roll" data-choice="Either" style="top: 394px;" aria-label="Either faction">
         <img src="assets/images/tile_any.png" alt="">
       </button>
       <button class="gold-btn" id="btn-faction-back" style="left: 112px; top: 590px; width: 160px; height: 44px;">
@@ -79,7 +82,7 @@
       <div class="txt parchment strip-label" id="strip-label"></div>
       <div class="class-strip" id="class-strip"></div>
 
-      <button class="gold-btn" id="btn-reroll" style="left: 92px; top: 538px; width: 200px; height: 48px;">
+      <button class="gold-btn" id="btn-reroll" data-goatcounter-click="wow-reroll" style="left: 92px; top: 538px; width: 200px; height: 48px;">
         <span class="txt btn-label" data-text="REROLL">REROLL</span>
       </button>
       <button class="gold-btn" id="btn-result-back" style="left: 112px; top: 594px; width: 160px; height: 44px;">

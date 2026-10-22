@@ -1,6 +1,6 @@
 // Offline cache. Bump CACHE_VERSION when files change.
 
-const CACHE_VERSION = "wow-randomizer-v1";
+const CACHE_VERSION = "wow-randomizer-v2";
 
 const FILES = [
   "./",
