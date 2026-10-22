@@ -1,6 +1,6 @@
 Made a WoW Forever Race & Class Randomizer after getting into the WoW Forever beta and not being able to decide what to roll. Same idea as my Diablo Class Randomizer, but this one picks your race first, then picks a class that race can actually play.
 
-Pick Alliance, Horde, or Either and let fate decide. Can be used as Web App here: https://zimmworks.github.io/WoW-Forever-Randomizer/
+Pick Alliance, Horde, or Either and let fate decide. Can be used as Web App here: https://zimmedialabs.github.io/WoW-Forever-Randomizer/
 
 - Works with all the WoW Forever races, including both Skyborne (High Order for Alliance, Windshaper for Horde)
 - Reroll as many times as you want, it won't give you the same combo twice in a row
@@ -29,7 +29,7 @@ All WoW art, icons and sounds belong to Blizzard. Fonts are Cinzel and Cinzel De
 > [!NOTE]
 > **Windows may show a SmartScreen warning** because the app isn't signed with a paid certificate. Click **More info → Run anyway**, or build it yourself:
 > ```powershell
-> git clone https://github.com/ZiMMworks/WoW-Forever-Randomizer
+> git clone https://github.com/ZiMMediaLabs/WoW-Forever-Randomizer
 > cd WoW-Forever-Randomizer
 > dotnet build WoWForeverRandomizer.csproj -c Release
 > ```
