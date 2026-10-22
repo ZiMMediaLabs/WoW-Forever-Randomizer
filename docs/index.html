@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>WoW Forever Randomizer</title>
+  <meta name="description" content="Can't decide what to play in WoW Forever? Pick a faction and roll a random race, then a class that race can play.">
+  <meta name="theme-color" content="#0c0804">
+
+  <!-- Installable app (PWA) -->
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" type="image/png" href="assets/icons/icon-192.png">
+  <link rel="apple-touch-icon" href="assets/icons/icon-180.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="WoW Randomizer">
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="backdrop" class="backdrop" aria-hidden="true"></div>
+  <!-- Fixed 384 x 661 stage, scaled to fit the screen -->
+  <main id="stage" class="stage" aria-live="polite">
+
+    <!-- Title screen -->
+    <section id="screen-title" class="screen" data-bg="assets/images/bg_title.png">
+      <img class="title-logo" src="assets/images/wow_logo.png" alt="World of Warcraft">
+      <h1 class="txt title-forever" data-text="FOREVER">FOREVER</h1>
+      <div class="divider" style="top: 243px; width: 260px;"></div>
+      <div class="txt gold title-line1" data-text="RACE &amp; CLASS">RACE &amp; CLASS</div>
+      <div class="txt gold title-line2" data-text="RANDOMIZER">RANDOMIZER</div>
+      <img class="title-dice" src="assets/images/dice.png" alt="">
+      <button class="gold-btn" id="btn-start" style="left: 92px; top: 536px; width: 200px; height: 48px;">
+        <span class="txt btn-label" data-text="START">START</span>
+      </button>
+      <div class="txt parchment footer" data-text="ZiMMedia Labs">ZiMMedia Labs</div>
+    </section>
+
+    <!-- Faction screen -->
+    <section id="screen-faction" class="screen" data-bg="assets/images/bg_faction.png" hidden>
+      <h2 class="txt gold header" data-text="CHOOSE YOUR FACTION">CHOOSE YOUR FACTION</h2>
+      <div class="divider" style="top: 54px; width: 300px;"></div>
+      <button class="faction-tile" data-choice="Alliance" style="top: 66px;" aria-label="Alliance">
+        <img src="assets/images/tile_alliance.png" alt="">
+      </button>
+      <button class="faction-tile" data-choice="Horde" style="top: 230px;" aria-label="Horde">
+        <img src="assets/images/tile_horde.png" alt="">
+      </button>
+      <button class="faction-tile" data-choice="Either" style="top: 394px;" aria-label="Either faction">
+        <img src="assets/images/tile_any.png" alt="">
+      </button>
+      <button class="gold-btn" id="btn-faction-back" style="left: 112px; top: 590px; width: 160px; height: 44px;">
+        <span class="txt btn-label small" data-text="BACK">BACK</span>
+      </button>
+    </section>
+
+    <!-- Result screen -->
+    <section id="screen-result" class="screen" data-bg="assets/images/bg_faction.png" hidden>
+      <h2 class="txt gold header" id="result-header" data-text="ROLLING...">ROLLING...</h2>
+      <div class="divider" style="top: 50px; width: 300px;"></div>
+
+      <div class="panel" id="race-panel" style="left: 24px; top: 62px;">
+        <div class="txt label panel-label" data-text="RACE">RACE</div>
+        <img class="crest" id="race-crest" alt="">
+        <div class="portrait" id="race-portrait"><img alt=""></div>
+        <div class="txt gold panel-name" id="race-name"></div>
+        <div class="txt parchment panel-sub" id="race-sub"></div>
+      </div>
+
+      <div class="panel" id="class-panel" style="left: 24px; top: 256px;">
+        <div class="txt label panel-label" data-text="CLASS">CLASS</div>
+        <div class="txt question" id="class-question" data-text="?">?</div>
+        <div class="class-icon" id="class-icon"><img alt=""></div>
+        <div class="txt panel-name class-name" id="class-name"></div>
+        <div class="txt parchment panel-sub" id="class-sub"></div>
+      </div>
+
+      <div class="txt parchment strip-label" id="strip-label"></div>
+      <div class="class-strip" id="class-strip"></div>
+
+      <button class="gold-btn" id="btn-reroll" style="left: 92px; top: 538px; width: 200px; height: 48px;">
+        <span class="txt btn-label" data-text="REROLL">REROLL</span>
+      </button>
+      <button class="gold-btn" id="btn-result-back" style="left: 112px; top: 594px; width: 160px; height: 44px;">
+        <span class="txt btn-label small" data-text="BACK">BACK</span>
+      </button>
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>

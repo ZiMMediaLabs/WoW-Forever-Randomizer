@@ -1,0 +1,419 @@
+/* WoW Forever Randomizer (web version) - laid out on a 384 x 661 stage that app.js scales to fit */
+
+@font-face {
+  font-family: "Cinzel WoW";
+  src: url("assets/fonts/Cinzel-Bold.ttf") format("truetype");
+  font-display: block;
+}
+
+@font-face {
+  font-family: "Cinzel Decorative WoW";
+  src: url("assets/fonts/CinzelDecorative-Bold.ttf") format("truetype");
+  font-display: block;
+}
+
+:root {
+  --gold-light: #ffeca0;
+  --gold: #ffd100;
+  --gold-dark: #c88c14;
+  --frame-dark: #78561e;
+  --frame-light: #e8be5a;
+  --parchment: #ebe1c8;
+  --parchment-dark: #beaf8c;
+  --outline: #0a0602;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  background: #000;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+}
+
+/* Blurred copy of the current background that fills the space around the app on tall/wide screens */
+.backdrop {
+  position: fixed;
+  inset: -40px;
+  background: #000 center / cover no-repeat;
+  filter: blur(18px) brightness(0.4);
+  transition: background-image 0.3s;
+}
+
+/* Stage + screens */
+
+.stage {
+  position: relative;
+  width: 384px;
+  height: 661px;
+  flex: none;
+  overflow: hidden;
+  background: #000 center / 100% 100% no-repeat;
+  transform-origin: center center;
+  font-family: "Cinzel WoW", Georgia, serif;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8);
+}
+
+.screen {
+  position: absolute;
+  inset: 0;
+}
+
+.screen[hidden] {
+  display: none;
+}
+
+/* Outlined gradient text
+   The element itself draws the dark outline; its ::after copy (same text,
+   from data-text) sits exactly on top and shows the gradient fill. */
+
+.txt {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  font-weight: normal;
+  line-height: 1;
+  color: var(--outline);
+  -webkit-text-stroke: var(--stroke, 6px) var(--outline);
+}
+
+.txt::after {
+  content: attr(data-text);
+  position: absolute;
+  inset: 0;
+  -webkit-text-stroke: 0;
+  color: transparent;
+  background-image: linear-gradient(var(--top, #fff), var(--bottom, #ccc));
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.gold {
+  --top: var(--gold-light);
+  --bottom: var(--gold-dark);
+}
+
+.parchment {
+  --top: var(--parchment);
+  --bottom: var(--parchment-dark);
+  --stroke: 4px;
+}
+
+.label {
+  --top: #c8bea0;
+  --bottom: #968764;
+  --stroke: 3px;
+}
+
+.divider {
+  position: absolute;
+  left: 50%;
+  height: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(90deg, transparent, var(--frame-light), transparent);
+}
+
+/* Title screen */
+
+.title-logo {
+  position: absolute;
+  left: 17px;
+  top: 34px;
+  width: 350px;
+}
+
+.title-forever {
+  top: 186px;
+  font-family: "Cinzel Decorative WoW", Georgia, serif;
+  font-size: 46px;
+  --top: #d6eeff;
+  --bottom: #4696e6;
+  --stroke: 8px;
+}
+
+.title-line1 {
+  top: 255px;
+  font-size: 25px;
+}
+
+.title-line2 {
+  top: 286px;
+  font-size: 18px;
+  --stroke: 5px;
+}
+
+.title-dice {
+  position: absolute;
+  left: 152px;
+  top: 462px;
+  width: 80px;
+  height: 54px;
+  image-rendering: auto;
+}
+
+.footer {
+  top: 632px;
+  font-size: 11px;
+  --stroke: 3px;
+}
+
+.header {
+  top: 22px;
+  font-size: 23px;
+}
+
+/* Red-and-gold WoW button (real in-game button art) */
+
+.gold-btn {
+  position: absolute;
+  padding: 0;
+  border: 0;
+  cursor: pointer;
+  background: url("assets/images/btn_up.png") center / 100% 100% no-repeat;
+  outline: none;
+}
+
+.gold-btn:hover {
+  background-image: url("assets/images/btn_hover.png");
+}
+
+.gold-btn:active {
+  background-image: url("assets/images/btn_down.png");
+}
+
+.gold-btn:focus-visible {
+  outline: 1px dotted var(--gold-light);
+  outline-offset: -8px;
+}
+
+.gold-btn:disabled {
+  cursor: default;
+  background-image: url("assets/images/btn_up.png");
+  filter: grayscale(0.85) brightness(0.6);
+}
+
+.btn-label {
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 19px;
+  --top: var(--gold-light);
+  --bottom: var(--gold);
+  --stroke: 4px;
+}
+
+.btn-label.small {
+  font-size: 18px;
+}
+
+.gold-btn:hover .btn-label {
+  --top: #fff;
+}
+
+.gold-btn:active .btn-label {
+  margin-top: 2px;
+}
+
+.gold-btn:disabled .btn-label {
+  --top: #969696;
+  --bottom: #646464;
+}
+
+/* Faction tiles */
+
+.faction-tile {
+  position: absolute;
+  left: 22px;
+  width: 340px;
+  height: 166px;
+  padding: 8px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.faction-tile img {
+  display: block;
+  width: 324px;
+  height: 150px;
+  filter: saturate(0.7);
+  transition: filter 0.12s, box-shadow 0.12s;
+}
+
+.faction-tile:hover img,
+.faction-tile:focus-visible img {
+  filter: none;
+  box-shadow: 0 0 0 2px var(--gold), 0 0 14px 4px rgba(255, 209, 0, 0.55);
+}
+
+.faction-tile:focus {
+  outline: none;
+}
+
+/* Result panels */
+
+.panel {
+  position: absolute;
+  width: 336px;
+  height: 180px;
+  background: linear-gradient(rgba(20, 14, 8, 0.75), rgba(6, 4, 2, 0.75));
+  border: 3px solid var(--frame-dark);
+  box-shadow: inset 0 0 0 1px var(--frame-light);
+}
+
+/* gold corner studs (four <i class="stud"> added to each panel by app.js) */
+.stud {
+  position: absolute;
+  width: 9px;
+  height: 9px;
+  background: var(--frame-light);
+  border: 1px solid var(--frame-dark);
+  transform: rotate(45deg);
+}
+
+.stud.tl { left: -7px; top: -7px; }
+.stud.tr { right: -7px; top: -7px; }
+.stud.bl { left: -7px; bottom: -7px; }
+.stud.br { right: -7px; bottom: -7px; }
+
+.panel .txt {
+  width: 330px;
+}
+
+.panel-label {
+  top: 5px;
+  font-size: 12px;
+}
+
+.crest {
+  position: absolute;
+  right: 7px;
+  top: 7px;
+  width: 36px;
+  height: 36px;
+}
+
+.crest:not([src]) {
+  display: none;
+}
+
+.portrait {
+  position: absolute;
+  left: 121px;
+  top: 25px;
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px var(--frame-light), 0 0 0 5px var(--frame-dark), 0 0 var(--glow, 0) calc(var(--glow, 0) / 3) var(--glow-color, transparent);
+}
+
+.portrait img {
+  width: 112%;
+  height: 112%;
+  margin: -6%;
+}
+
+.portrait:not(.has-image) {
+  display: none;
+}
+
+.panel-name {
+  top: 123px;
+  font-size: 25px;
+}
+
+.panel-name.locked {
+  font-size: 28px;
+  top: 121px;
+}
+
+.panel-sub {
+  top: 154px;
+  font-size: 13px;
+  --stroke: 3px;
+}
+
+.question {
+  top: 55px;
+  font-family: "Cinzel Decorative WoW", Georgia, serif;
+  font-size: 64px;
+  --top: #786e5a;
+  --bottom: #3c372d;
+  --stroke: 3px;
+}
+
+.class-icon {
+  position: absolute;
+  left: 123px;
+  top: 27px;
+  width: 84px;
+  height: 84px;
+  box-shadow: 0 0 0 1px var(--frame-light), 0 0 0 4px var(--frame-dark), 0 0 var(--glow, 0) calc(var(--glow, 0) / 3) var(--glow-color, transparent);
+}
+
+.class-icon img {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.class-icon:not(.has-image) {
+  display: none;
+}
+
+.class-name {
+  --stroke: 6px;
+}
+
+/* "Possible classes" strip */
+
+.strip-label {
+  top: 449px;
+  font-size: 12px;
+  --stroke: 3px;
+}
+
+.class-strip {
+  position: absolute;
+  left: 0;
+  top: 474px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.class-strip img {
+  width: 30px;
+  height: 30px;
+  box-shadow: 0 0 0 1px var(--frame-light), 0 0 0 3px var(--frame-dark);
+  opacity: 0.45;
+  filter: grayscale(0.6);
+}
+
+.class-strip img.current {
+  opacity: 1;
+  filter: none;
+  box-shadow: 0 0 0 1px var(--frame-light), 0 0 0 3px var(--frame-dark), 0 0 10px 3px var(--glow-color);
+}
